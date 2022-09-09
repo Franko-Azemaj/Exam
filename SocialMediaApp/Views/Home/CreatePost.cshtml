@@ -1,0 +1,36 @@
+@model Post
+<div class="row">
+    <h3>Create a Post</h3>
+
+    <div class="col-sm-3"></div>
+
+    <div class="col-sm-6">
+
+        <form action="newPost" method="post">
+
+            <div class="d-flex flex-row align-items-center mb-4">
+                <div class="form-outline flex-fill mb-0">
+                    <input asp-for="Description" class="form-control" />
+                    <label class="form-label" asp-for="Description"></label>
+                    <span asp-validation-for="Description"></span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row align-items-center mb-4">
+                <div class="form-outline flex-fill mb-0">
+                    <input asp-for="Comment" class="form-control" />
+                    <label class="form-label" asp-for="Comment"></label>
+                    <span asp-validation-for="Comment"></span>
+                </div>
+
+                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Create</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-sm-3"></div>
+
+</div>
