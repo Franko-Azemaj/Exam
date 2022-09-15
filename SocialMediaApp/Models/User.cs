@@ -14,12 +14,16 @@ public class User
     public string LastName { get; set; }
     
     [Required]
-    public string UserName { get; set; }
+    [EmailAddress]
+    public string Email { get; set; }
     
     [DataType(DataType.Password)]
     [Required]
     [MinLength(8, ErrorMessage = "Password must be 8 characters or longer!")]
     public string Password { get; set; }
+
+    [Required]
+    public string Description { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
@@ -36,12 +40,15 @@ public class User
     public string Confirm { get; set; }
 
     public List<Post> CreatedPosts { get; set; } =  new List<Post>();
+
+    public List<Like> PostsLiked { get; set; } = new List<Like>(); 
+
 }
 public class LoginUser
 {
     // No other fields!
     [Required]
-    public string UserName { get; set; }
+    public string Email { get; set; }
     [Required]
     public string Password { get; set; }
 }

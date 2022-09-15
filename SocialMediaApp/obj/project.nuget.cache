@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kreIUMEm0KPod7xmE6Pjpybe+GmBKlo/EWRGfmNUY/KGh8tt1Wep+HXtNXJ/Y29KtBFwm9OH6mg9nVsRPOJbvw==",
+  "dgSpecHash": "MQTrbv/htytvz8aDdyMuaDWsHckw9iO2ksHliGODcdH+s6IuvA1MwEauGcNeSmctQlAZ88Zq/2WoJuoV4hatlg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Desktop\\SocialMediaApp\\SocialMediaApp.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Desktop\\Exam\\SocialMediaApp\\SocialMediaApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.3\\microsoft.entityframeworkcore.6.0.3.nupkg.sha512",

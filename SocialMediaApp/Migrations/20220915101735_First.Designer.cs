@@ -11,7 +11,7 @@ using SocialMediaApp.Models;
 namespace SocialMediaApp.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220909104420_First")]
+    [Migration("20220915101735_First")]
     partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,17 +31,40 @@ namespace SocialMediaApp.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("NrLikes")
+                    b.Property<int>("PostId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PostId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("CommentId");
 
                     b.HasIndex("PostId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("SocialMediaApp.Models.Like", b =>
+                {
+                    b.Property<int>("LikeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LikeId");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("SocialMediaApp.Models.Post", b =>
@@ -50,16 +73,9 @@ namespace SocialMediaApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("NrLikes")
-                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -110,6 +126,14 @@ namespace SocialMediaApp.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -125,10 +149,6 @@ namespace SocialMediaApp.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
@@ -136,13 +156,34 @@ namespace SocialMediaApp.Migrations
 
             modelBuilder.Entity("SocialMediaApp.Models.Comment", b =>
                 {
-                    b.HasOne("SocialMediaApp.Models.Post", "BelongingPost")
-                        .WithMany("CreatedComnets")
+                    b.HasOne("SocialMediaApp.Models.Post", null)
+                        .WithMany("Commnets")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BelongingPost");
+                    b.HasOne("SocialMediaApp.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SocialMediaApp.Models.Like", b =>
+                {
+                    b.HasOne("SocialMediaApp.Models.Post", null)
+                        .WithMany("Likers")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SocialMediaApp.Models.User", "User")
+                        .WithMany("PostsLiked")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SocialMediaApp.Models.Post", b =>
@@ -177,12 +218,16 @@ namespace SocialMediaApp.Migrations
 
             modelBuilder.Entity("SocialMediaApp.Models.Post", b =>
                 {
-                    b.Navigation("CreatedComnets");
+                    b.Navigation("Commnets");
+
+                    b.Navigation("Likers");
                 });
 
             modelBuilder.Entity("SocialMediaApp.Models.User", b =>
                 {
                     b.Navigation("CreatedPosts");
+
+                    b.Navigation("PostsLiked");
 
                     b.Navigation("ReciverRequests");
 

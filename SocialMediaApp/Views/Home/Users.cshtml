@@ -1,15 +1,27 @@
-<div class="mt-4 row">
+<div class="p-2 mb-4 row bg-primary">
     <div class="col-sm-8"></div>
     <div class="col-sm-4">
-        <a class="btn btn-primary" href="/professional_profile">MyProfile</a>
-        <a class="btn btn-primary" href="/logout">LogOut</a>
+        <a class="btn btn-primary border border-dark" href="/">All Users</a>
+        <a class="btn btn-primary border border-dark" href="/professional_profile">MyProfile</a>
+        <a class="btn btn-primary border border-dark" href="/logout">LogOut</a>
     </div>
+
 </div>
 
-<div class="row">
+<div class="container">
 
-    <h2>@ViewBag.CurrentUser.UserName</h2>
-    <p>@ViewBag.CurrentUser.FirstName</p>
-    <p>@ViewBag.CurrentUser.LastName</p>
-    
+    <div class="row">
+
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-center">
+            <h3 class="pb-2">@ViewBag.CurrentUser.FirstName @ViewBag.CurrentUser.LastName</h3>
+            <p class=""><strong>Email</strong> : @ViewBag.CurrentUser.Email</p>
+            <p><strong>Description</strong> : @ViewBag.CurrentUser.Description</p>
+        </div>
+        <div class="col-sm-3"></div>
+
+
+
+    </div>
+
 </div>

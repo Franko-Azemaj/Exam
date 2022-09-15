@@ -1,61 +1,171 @@
-﻿@{
+﻿@model Comment
+@{
     ViewData["Title"] = "Home Page";
 }
-<div class="mt-4 row">
+<nav class="p-2 row bg-primary">
+
     <div class="col-sm-8"></div>
     <div class="col-sm-4">
-        <a class="btn btn-primary" href="/professional_profile">MyProfile</a>
-        <a class="btn btn-primary" href="/logout">LogOut</a>
-        <a class="btn btn-success" href="/CreatePost">Create Post</a>
+        <a class="btn btn-primary border border-dark" href="/professional_profile">MyProfile</a>
+        <a class="btn btn-primary border border-dark" href="/logout">LogOut</a>
+        <a class="btn btn-success border border-dark" href="/CreatePost">Create Post</a>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
+</nav>
+
+<div class="row mt-4">
+
+    <div class="col-sm-8"></div>
+    <div class="col-sm-4 italic text-info">
         Users you may want to connect with:
     </div>
-    <div class="col-sm-2"></div>
 
 </div>
 
-<div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-4">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>
-                        Actions
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var perdorues in ViewBag.perdoruesit)
-                {
+
+<main>
+    <div class="row">
+
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6">
+
+
+            @foreach (var post in ViewBag.Posts)
+            {
+
+                <div class="d-flex flex-column align-items-center mb-4">
+
+                    <div class="w-75 px-3 pt-3 pb-1 h-100 d-inline-block border border-dark rounded"
+                    style="background-color: rgba(0,0,255,.1)">
+                        <h3>@post.Description</h3>
+                        <div class="form-outline flex-fill mb-0 border">
+                        </div>
+
+                        @if (post.Creator.UserId == ViewBag.iLoguari.UserId)
+                        {
+
+                            <p>Posted by <a href="/users/@post.Creator.UserId"> You </a></p>
+
+                        }
+                        else
+                        {
+                            <p>Posted by <a href="/users/@post.Creator.UserId"> @post.Creator.FirstName </a></p>
+
+                        }
+                        <div class="d-flex flex-row align-items-left mb-3">
+
+                            @{
+                                var id = 0;
+
+                                @foreach (var liker in post.Likers)
+                                {
+                                    if (liker.UserId == @ViewBag.iLoguari.UserId)
+                                    {
+                                        id = liker.LikeId;
+                                        break;
+                                    }
+                                }
+
+                                @if (post.Creator.UserId == ViewBag.iLoguari.UserId)
+                                {
+
+                                    <a href="/Post/Delete/@post.PostId">Delete</a>
+
+                                }
+
+                                @if (id == 0)
+                                {
+                                    <a href="/Post/Like/@post.PostId" class="btn btn-primary mx-3">Like</a>
+                                }
+
+                                else
+                                {
+                                    <a href="/Post/Un-Like/@id" class="btn btn-primary mx-3">Un-Like</a>
+                                }
+
+                            }
+
+                            @if (post.Likers.Count == 0)
+                            {
+
+                                <p>0 likes</p>
+                            }
+                            else if (post.Likers.Count == 1)
+                            {
+
+                                <p>1 like</p>
+                            }
+                            else
+                            {
+
+                                <p>@post.Likers.Count likes</p>
+
+                            }
+
+
+
+                        </div>
+
+                        <div class="d-flex flex-row align-items-center mb-4">
+
+                            <form action="/addCommnet" method="post">
+
+                                <div class="d-flex justify-content-center mx-4">
+                                    <button type="submit" class="btn btn-primary btn-lg">Add Commnet</button>
+                                </div>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input asp-for="Content" class="form-control" />
+                                    <span asp-validation-for="Content"></span>
+                                </div>
+
+                                <input name="@nameof(@Model.PostId)" value="@post.PostId" type="hidden" />
+
+                            </form>
+
+                        </div>
+
+                        <div>
+                            <h3>Comments</h3>
+
+
+
+                            @foreach (var comment in ViewBag.Comment)
+                            {
+                                @if (post.PostId == comment.PostId)
+                                {
+                                    <p>@comment.Content</p>
+                                }
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="col-sm-4">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><a href="/users/@perdorues.UserId">@perdorues.FirstName</a></td>
-                        <td><a href="/SendR/@perdorues.UserId">Connect</a></td>
+                        <th>Name</th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="col-sm-6">
+                </thead>
+                <tbody>
+                    @foreach (var perdorues in ViewBag.perdoruesit)
+                    {
+                        <tr>
+                            <td><a href="/users/@perdorues.UserId">@perdorues.FirstName</a></td>
+                            <td><a href="/SendR/@perdorues.UserId">Connect</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
-
-        @foreach (var post in ViewBag.Posts)
-        {
-            <form class="border" action="" method="get">
-                
-                <p>@post.Creator.FirstName</p>
-                <h3>@post.Description</h3>
-                <h3>@post.Comment</h3>
-
-            </form>
-        }
 
     </div>
-
-</div>
+</main>

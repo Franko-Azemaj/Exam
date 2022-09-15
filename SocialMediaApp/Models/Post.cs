@@ -11,13 +11,9 @@ public class Post
     public int PostId { get; set; }
     [Required]
     public string Description { get; set; }
-    public string Comment { get; set; }
-    public int NrLikes { get; set; }
     public int UserId { get; set; }
     public User? Creator { get; set;}
-
-    public List<Comment> CreatedComnets { get; set; } =  new List<Comment>();
+    public List<Like> Likers { get; set; } = new List<Like>(); 
+    public List<Comment> Commnets { get; set; } = new List<Comment>(); 
 
 }
-
-

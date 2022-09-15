@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\SocialMediaApp\\SocialMediaApp.csproj": {}
+    "C:\\Users\\HP\\Desktop\\Exam\\SocialMediaApp\\SocialMediaApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\SocialMediaApp\\SocialMediaApp.csproj": {
+    "C:\\Users\\HP\\Desktop\\Exam\\SocialMediaApp\\SocialMediaApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\SocialMediaApp\\SocialMediaApp.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Exam\\SocialMediaApp\\SocialMediaApp.csproj",
         "projectName": "SocialMediaApp",
-        "projectPath": "C:\\Users\\HP\\Desktop\\SocialMediaApp\\SocialMediaApp.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\Exam\\SocialMediaApp\\SocialMediaApp.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\SocialMediaApp\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\Exam\\SocialMediaApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -12,14 +12,12 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
                                 <form action="/Login" method="post" class="mx-1 mx-md-4">
-                            
-
-        
-                                    <div class="d-flex flex-row align-items-center mb-4">
+                             
+                                   <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="form-outline flex-fill mb-0">
-                                            <input asp-for="UserName" class="form-control" />
-                                            <label class="form-label" asp-for="UserName"></label>
-                                            <span asp-validation-for="UserName"></span>
+                                            <input asp-for="Email" class="form-control" />
+                                            <label class="form-label" asp-for="Email"></label>
+                                            <span asp-validation-for="Email"></span>
                                         </div>
                                     </div>
 
@@ -30,7 +28,6 @@
                                             <span asp-validation-for="Password"></span>
                                         </div>
                                     </div>
-
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="submit" class="btn btn-primary btn-lg">Login</button>
